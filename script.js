@@ -39,7 +39,6 @@ let snake = {
     ],
     color: "#00FFFF",
     snakeRender: function(event){
-            
         let [x, y] = this.position.at(-1);
         this.position.push([x + vectorX, y + vectorY]);
         let oldTail = this.position.shift()
