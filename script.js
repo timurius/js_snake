@@ -1,4 +1,4 @@
-const canvas = document.getElementById('map');
+const canvas = document.getElementById('map');//get canvas from html page
 const cs = canvas.getContext('2d');
 
 function drawSqr(color, size, position){
