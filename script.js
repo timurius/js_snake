@@ -44,12 +44,12 @@ let snake = {//the snake object
         //snake moving by aditing a new head in the end of "postion" and deleting the tai;
         let [x, y] = this.position.at(-1);
         //checking need we teleport snake to other wall or not
-        let nextX = (x + vectorX == canvas.width / sqrSize + 1) ? 0 :
-        (x == 0) ? canvas.width / sqrSize : 
+        let nextX = (x + vectorX == canvas.width / sqrSize - 1) ? 1 :
+        (x + vectorX == 0) ? canvas.width / sqrSize - 2 : 
         x + vectorX;
 
-        let nextY = (y + vectorY == canvas.height / sqrSize + 1) ? 0 : 
-        (y == 0) ? canvas.height / sqrSize : 
+        let nextY = (y + vectorY == canvas.height / sqrSize - 1) ? 1 : 
+        (y + vectorY == 0) ? (canvas.height / sqrSize) - 2: 
         y + vectorY
 
         this.position.push([nextX, nextY]);//add the new head
