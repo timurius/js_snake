@@ -72,8 +72,6 @@ let snake = {//the snake object
             let oldTail = this.position.shift()//delete the old tail
             //now position of snake was changed
             //lets draw the snake by position
-            console.log(this.position.toString())
-            console.log(vectorX, vectorY)
             drawSqr("#000000", sqrSize, oldTail);
             for(let pos of this.position){
                 drawSqr(this.color, sqrSize, pos);
