@@ -1,6 +1,82 @@
 const canvas = document.getElementById('map');//get canvas from html page
 const cs = canvas.getContext('2d');
 
+let snake = {//the snake object
+    position : [//position of every part of body
+        [1, 1],
+        [2, 1],
+        [3, 1],
+        [4, 1],
+        [5, 1],
+        [6, 1],
+    ],
+    color: "#00FFFF",//color of snake
+    score : 0,
+    snakeRender: function(){//there we draw our snake
+        let [x, y] = this.position.at(-1);
+        //snake moving by aditing a new head in the end of "postion" and deleting the tail
+        //checking need we teleport snake to other wall or not
+        appleWasAte = appleEating([x, y], apple.position, this.score)
+        if(appleWasAte){
+            this.score++;
+            apple.position = generateRandomPosition();
+        }
+        console.log(this.score);
+
+        let nextX = (x + vectorX == canvas.width / sqrSize - 1) ? 1 :
+        (x + vectorX == 0) ? canvas.width / sqrSize - 2 : 
+        x + vectorX;
+
+        let nextY = (y + vectorY == canvas.height / sqrSize - 1) ? 1 : 
+        (y + vectorY == 0) ? (canvas.height / sqrSize) - 2: 
+        y + vectorY
+        if(!gameOver(this.position, nextX, nextY)){// if it`s not game over
+            if(!appleWasAte){// if we ate an apple we don`t need to delete the tail and because that our snake become bigger
+                let oldTail = this.position.shift()//delete the old tail
+                drawSqr("#000000", sqrSize, oldTail);
+            }
+            
+            this.position.push([nextX, nextY]);//add the new head
+            
+            //now position of snake was changed
+            //lets draw the snake by position
+            
+            for(let pos of this.position){
+                drawSqr(this.color, sqrSize, pos);
+            }
+            setTimeout(() => snake.snakeRender(), 100);//this will call this function every 100ms
+        }
+        
+    }
+};
+
+let apple = {//the apple
+    position : [8, 1],//position of apple
+    color : "#FF0000",//color of apple
+    appleRender : function(){//there we draw the apple
+        console.log(this.position);
+        while(isAppleInSnake(this.position, apple.position)){
+            this.generateRandomPosition();
+        }
+        drawSqr(this.color, sqrSize, this.position);
+        setTimeout(() => apple.appleRender(), 100);
+    }
+}
+
+let move = true;
+
+const sqrSize = 20;//set all squares size
+const height = canvas.height / sqrSize;// this is the size of canvas but in  pixels(squares)
+const width = canvas.width / sqrSize;
+
+cs.fillStyle = "#000000";
+cs.fillRect(0, 0, canvas.width, canvas.height);//make canvas black
+
+let vectorX = 1, vectorY = 0;
+
+
+apple.appleRender();
+snake.snakeRender();
 
 function drawSqr(color, size, position){// this is the function which draw pixels(squares)
     cs.fillStyle = color;
@@ -48,74 +124,13 @@ document.addEventListener('keyup', function(event){//that fix the bug when the s
     move = true;
 });
 
-let move = true;
-
-const sqrSize = 20;//set all squares size
-const height = canvas.height / sqrSize;// this is the size of canvas but in  pixels(squares)
-const width = canvas.width / sqrSize;
-
-cs.fillStyle = "#000000";
-cs.fillRect(0, 0, canvas.width, canvas.height);//make canvas black
-
-let vectorX = 1, vectorY = 0;
-
-let snake = {//the snake object
-    position : [//position of every part of body
-        [1, 1],
-        [2, 1],
-        [3, 1],
-        [4, 1],
-        [5, 1],
-        [6, 1],
-    ],
-    color: "#00FFFF",//color of snake
-    score : 0,
-    snakeRender: function(){//there we draw our snake
-        let [x, y] = this.position.at(-1);
-        //snake moving by aditing a new head in the end of "postion" and deleting the tail
-        //checking need we teleport snake to other wall or not
-        appleWasAte = appleEating([x, y], apple.position, this.score)
-        if(appleWasAte){
-            this.score++;
-            apple.position = [Math.round( (Math.random() * (width - 1) ) - 1), Math.round( (Math.random() * (height - 1) ) - 1)];
-        }
-        console.log(this.score);
-
-        let nextX = (x + vectorX == canvas.width / sqrSize - 1) ? 1 :
-        (x + vectorX == 0) ? canvas.width / sqrSize - 2 : 
-        x + vectorX;
-
-        let nextY = (y + vectorY == canvas.height / sqrSize - 1) ? 1 : 
-        (y + vectorY == 0) ? (canvas.height / sqrSize) - 2: 
-        y + vectorY
-        if(!gameOver(this.position, nextX, nextY)){// if it`s not game over
-            if(!appleWasAte){// if we ate an apple we don`t need to delete the tail and because that our snake become bigger
-                let oldTail = this.position.shift()//delete the old tail
-                drawSqr("#000000", sqrSize, oldTail);
-            }
-            this.position.push([nextX, nextY]);//add the new head
-            
-            //now position of snake was changed
-            //lets draw the snake by position
-            
-            for(let pos of this.position){
-                drawSqr(this.color, sqrSize, pos);
-            }
-            setTimeout(() => snake.snakeRender(), 100);//this will call this function every 100ms
-        }
-        
+function isAppleInSnake(snakePos, applePos){
+    for(let p of snakePos){
+        if(p[0] == applePos[0] && p[1] == applePos[1]) return true;
     }
-};
-
-let apple = {//the apple
-    position : [8, 1],//position of apple
-    color : "#FF0000",//color of apple
-    appleRender : function(){//there we draw the apple
-        console.log("I`ve worked!");
-        drawSqr(this.color, sqrSize, this.position);
-        setTimeout(() => apple.appleRender(), 100);
-    }
+    return false;
 }
 
-apple.appleRender();
-snake.snakeRender();
+function generateRandomPosition(){
+    return [Math.round( (Math.random() * (width - 2) ) + 1), Math.round( (Math.random() * (height - 2) ) + 1)]
+}
