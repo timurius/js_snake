@@ -66,14 +66,13 @@ let apple = {//the apple
 let move = true;
 
 const sqrSize = 20;//set all squares size
-const height = canvas.height / sqrSize;// this is the size of canvas but in  pixels(squares)
+const height = canvas.height / sqrSize;// this is the size of canvas but in pixels(squares)
 const width = canvas.width / sqrSize;
 
 cs.fillStyle = "#000000";
 cs.fillRect(0, 0, canvas.width, canvas.height);//make canvas black
 
 let vectorX = 1, vectorY = 0;
-
 
 apple.appleRender();
 snake.snakeRender();
@@ -102,18 +101,18 @@ function appleEating(headPos, applePos, score){//checkind, did the snake ate an 
 
 document.addEventListener('keydown', function(event){//checking for a pressed buttons
     if(move){
-        switch(event.key){
-        case "w":
-            if(vectorY != 1){vectorX = 0, vectorY = -1;}//change the direction depending on the pressed button
+        switch(event.code){
+        case "KeyW":
+            movement.up();//change the direction depending on the pressed button
             break;
-        case "a":
-            if(vectorX != 1){vectorX = -1, vectorY = 0;}
+        case "KeyA":
+            movement.left();
             break;
-        case "s":
-            if(vectorY != -1){vectorX = 0, vectorY = 1;}
+        case "KeyS":
+            movement.down();
             break;
-        case "d":
-            if(vectorX != -1){vectorX = 1, vectorY = 0;}
+        case "KeyD":
+            movement.right();
             break;
         }
     }
@@ -132,5 +131,28 @@ function isAppleInSnake(snakePos, applePos){
 }
 
 function generateRandomPosition(){
-    return [Math.round( (Math.random() * (width - 2) ) + 1), Math.round( (Math.random() * (height - 2) ) + 1)]
+    return [Math.round( (Math.random() * (width - 3) ) + 1), Math.round( (Math.random() * (height - 3) ) + 1)];
+}
+
+let movement = {
+    left : function(){ 
+        if(vectorX != 1){
+            vectorX = -1; vectorY = 0;
+        } 
+    },
+    right : function(){ 
+        if(vectorX != -1){ 
+            vectorX = 1; vectorY = 0;
+        } 
+    }, 
+    up : function(){ 
+        if(vectorY != 1){ 
+            vectorX = 0; vectorY = -1; 
+        } 
+    },
+    down : function(){
+        if(vectorY != -1){ 
+            vectorX = 0; vectorY = 1;
+        } 
+    },  
 }
