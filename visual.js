@@ -3,24 +3,34 @@ const score = document.getElementById("score");
 
 function visualGameOver(){
     text.innerText = "Game over";// we show string "Game over" 
-    let time = 0;
     let margin = parseInt(text.style.marginTop);
     let id = null;
     clearInterval(id);
-    id = setInterval(waiting, 100)
-    
+    id = setInterval(waiting, 100);
+    let i = 0, time = 0;
     function textAnimation() {
+        console.log("text");
         if (margin == 290) {
-            score.innerText = `Total score: ${snake.score}`;
-            clearInterval(id);
+            id = setInterval(scoreAnim, 100)
+            
         } else { 
             text.style.marginTop = --margin + "px";
         }
     }
     function waiting(){
-        if(time == 10){
+        console.log("waiting");
+        if(time == 10){    
             id = setInterval(textAnimation, 10);
         }
         time++
+    }
+    function scoreAnim(){
+        console.log("score");
+        if(i <= snake.score){
+            score.innerText = `Total score: ${i++}`;
+        }else{
+            id = null;
+            clearInterval(id);
+        }
     }
 }
