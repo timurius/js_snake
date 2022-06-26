@@ -54,7 +54,6 @@ let apple = {//the apple
     position : [8, 1],//position of apple
     color : "#FF0000",//color of apple
     appleRender : function(){//there we draw the apple
-        console.log(this.position);
         while(isAppleInSnake(this.position, apple.position)){
             this.generateRandomPosition();
         }
@@ -86,7 +85,7 @@ function gameOver(pos, x, y){
     let isGameOver = false;// this variable shows, need we continue render of snake or not
     pos.forEach( (value, index) => {// check every part of body without head
         if( (value[0] == x && value[1] == y) ){// if head have the same position as any part of body
-            document.getElementById("text").innerText = "Game over";// we show string "Game over" 
+            visualGameOver();
             isGameOver = true;//and end the render
         }
     });
