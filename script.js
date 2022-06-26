@@ -54,7 +54,6 @@ let apple = {//the apple
     position : [8, 1],//position of apple
     color : "#FF0000",//color of apple
     appleRender : function(){//there we draw the apple
-        console.log(this.position);
         while(isAppleInSnake(this.position, apple.position)){
             this.generateRandomPosition();
         }
