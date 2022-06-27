@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html>
  <head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
    <title>The snake</title>
    <meta charset="utf-8">
  </head>
  <body>
-    <canvas id="map" width="1280" height="720" style="position: absolute;">
-    </canvas>
-    <p style="color:rgb(255, 255, 255); margin-top: 310px; margin-left: 550px; position: absolute; font-size:40px;" id="text"></p>
-    <p style="color:rgb(255, 255, 255); margin-top: 340px; margin-left: 585px; position: absolute; font-size:20px; opacity: 0;" id="score"></p>
+  <div>
+    <canvas id="map" width="1280" height="720" style="position: absolute; filter: grayscale(0%);"></canvas>
+    <p style="color:rgb(255, 255, 255); margin-top: 310px; margin-left: 23%; position: absolute; font-size:40px; font-family: 'Press Start 2P', cursive;" id="text"></p>
+    <p style="color:rgb(255, 255, 255); margin-top: 340px; margin-left: 25%; position: absolute; font-size:20px; opacity: 0; font-family: 'Press Start 2P', cursive;" id="score"></p>
     <script src="visual.js"></script>
     <script src="script.js"></script>
+  </div>
+    
  </body> 
 </html>

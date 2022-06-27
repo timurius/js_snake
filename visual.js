@@ -2,10 +2,11 @@ const text = document.getElementById("text");
 const score = document.getElementById("score");
 
 function visualGameOver(){
-    text.innerText = "Game over";// we show string "Game over" 
+    text.innerText = "GAME OVER";// we show string "Game over" 
     let i = 0, j = 0;
     let id;
     let margin = parseInt(text.style.marginTop);
+    setInterval( () => canvas.style.filter = "grayscale(" + (parseInt( (canvas.style.filter).slice(10) ) + 1) + "%)", 20 );
     id = setTimeout(textAnimation, 1000);
     score.innerText = "Total score: ";
     id = setTimeout(scoreOpacity, 2000);
