@@ -13,8 +13,8 @@ a:link, a:visited {
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    margin-top: 46%;
     font-family: 'Press Start 2P', cursive;
+    position: absolute;
 }
 
 a:hover, a:active {
