@@ -1,9 +1,9 @@
 .GameOver{
-    color:rgb(255, 255, 255); margin-top: 410px; margin-left: 36%; position: absolute; font-size:40px; font-family: 'Press Start 2P', cursive;
-
+    color:rgb(255, 255, 255);
+    margin-left: 36%; position: absolute; font-size:40px; font-family: 'Press Start 2P', cursive;
 }
 .ScoreText{
-    color:rgb(255, 255, 255); margin-top: 440px; margin-left: 38%; position: absolute; font-size:20px; opacity: 0; font-family: 'Press Start 2P', cursive;
+    color:rgb(255, 255, 255); margin-top: 440px; margin-left: 38%; position: absolute; font-size:20px; font-family: 'Press Start 2P', cursive;
 }
 
 a:link, a:visited {

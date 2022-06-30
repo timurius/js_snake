@@ -13,7 +13,7 @@ function visualGameOver(){
     console.log("after opacity");
     setTimeout(scoreAnim, 3000);
     function textAnimation() {
-        console.log("text");
+        console.log(text);
         text.style.marginTop = (margin - i) + "px";
         ++i;
         if(i != 20) { setTimeout(textAnimation, 30); }
@@ -25,6 +25,7 @@ function visualGameOver(){
         if(score.style.opacity != "1") setTimeout(scoreOpacity, 10);
     }
     function scoreAnim(){
+        console.log(score);
         id = setInterval( () => {
             console.log(j);
             score.innerText = `Total score: ${j}`;
