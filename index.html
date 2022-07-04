@@ -7,12 +7,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
 
     <title>Lobby</title>
-    <style>
-    
-    </style>
+
+    <script src="snakeEditor.js"></script>
 </head>
 <body background="black">
-    <div align="center" >
+    <div align="center" class="SnakeEditor">
+        <p>Set up your skin!</p>
+        <button class="partOfSnake" id="part1" style="background-color: cyan;" onclick="setPart(1)"></button>
+        <button class="partOfSnake" id="part2" style="background-color: cyan;" onclick="setPart(2)"></button>
+        <button class="partOfSnake" id="part3" style="background-color: cyan;" onclick="setPart(3)"></button>
+        <div align="center" class="colorPickerDiv">
+            <button class="colorPicker" style="background-color: cyan;" onclick="setColor('cyan')"></button>
+            <button class="colorPicker" style="background-color: greenyellow;" onclick="setColor('greenyellow')"></button>
+            <button class="colorPicker" style="background-color: red;" onclick="setColor('red')"></button>
+            <button class="colorPicker" style="background-color: yellow;" onclick="setColor('yellow')"></button>
+            <button class="colorPicker" style="background-color: fuchsia;" onclick="setColor('fuchsia')"></button>
+        </div>
+    </div>
+
+    <div align="center" class="play">
         <input placeholder="Enter your nickname" size="20">
         <a href="game/index.html" target="_self">Play</a>
     </div>
