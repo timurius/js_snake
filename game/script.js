@@ -10,7 +10,8 @@ let snake = {//the snake object
         [5, 1],
         [6, 1],
     ],
-    color: "#00FFFF",//color of snake
+    color: ['yellow', 'fuchsia', 'yellow', 'yellow'],//color of snake
+    colorNum: 0,
     score : 0,
     snakeRender: function(){//there we draw our snake
         let [x, y] = this.position.at(-1);
@@ -21,7 +22,6 @@ let snake = {//the snake object
             this.score++;
             apple.position = generateRandomPosition();
         }
-        console.log(this.score);
 
         let nextX = (x + vectorX == canvas.width / sqrSize - 1) ? 1 :
         (x + vectorX == 0) ? canvas.width / sqrSize - 2 : 
@@ -42,9 +42,12 @@ let snake = {//the snake object
             //lets draw the snake by position
             
             for(let pos of this.position){
-                drawSqr(this.color, sqrSize, pos);
+                drawSqr(this.color[this.colorNum], sqrSize, pos);
+                this.colorNum == 3 ? this.colorNum = 0 : this.colorNum++;
+                console.log("colorNum: " + this.colorNum, "position.length: ", this.position.length);
             }
-            setTimeout(() => snake.snakeRender(), 100);//this will call this function every 100ms
+            this.colorNum = 0;
+            setTimeout(snake.snakeRender.bind(this), 100);//this will call this function every 100ms
         }
         
     }
