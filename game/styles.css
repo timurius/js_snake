@@ -14,10 +14,8 @@ a:link, a:visited {
     text-decoration: none;
     display: inline-block;
     font-family: 'Press Start 2P', cursive;
-    position: absolute;
 }
 
 a:hover, a:active {
-    padding: 16px 43px;
     background-color: #b18a35;
 }
