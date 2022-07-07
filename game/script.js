@@ -1,6 +1,5 @@
 const canvas = document.getElementById('map');//get canvas from html page
 const cs = canvas.getContext('2d');
-
 let snake = {//the snake object
     position : [//position of every part of body
         [1, 1],
@@ -10,7 +9,7 @@ let snake = {//the snake object
         [5, 1],
         [6, 1],
     ],
-    color: ['yellow', 'fuchsia', 'yellow', 'yellow'],//color of snake
+    color: ['yellow', 'fuchsia', 'yellow'],//color of snake
     colorNum: 0,
     score : 0,
     snakeRender: function(){//there we draw our snake
@@ -44,7 +43,7 @@ let snake = {//the snake object
             for(let pos of this.position){
                 drawSqr(this.color[this.colorNum], sqrSize, pos);
                 this.colorNum == 3 ? this.colorNum = 0 : this.colorNum++;
-                console.log("colorNum: " + this.colorNum, "position.length: ", this.position.length);
+                console.log(this.color);
             }
             this.colorNum = 0;
             setTimeout(snake.snakeRender.bind(this), 100);//this will call this function every 100ms
@@ -52,6 +51,10 @@ let snake = {//the snake object
         
     }
 };
+
+
+snake.color = window.location.search.substring(6).split(",");
+
 
 let apple = {//the apple
     position : [8, 1],//position of apple
