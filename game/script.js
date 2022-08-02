@@ -1,5 +1,39 @@
 const canvas = document.getElementById('map');//get canvas from html page
 const cs = canvas.getContext('2d');
+
+let canvasHeightInSqrs, canvasWidthInSqrs;
+
+let sqrSize;
+
+function changeCanvasSize() {
+    canvas.height = Math.floor(window.innerHeight / 2);
+    canvas.width = Math.floor(window.innerWidth / 2);
+
+    sqrSize = Math.floor( (canvas.height + canvas.width) / 100 );//set all squares size
+
+
+    canvasHeightInSqrs = Math.floor(canvas.height / sqrSize);
+    canvasWidthInSqrs = Math.floor(canvas.width / sqrSize);
+
+    
+    let canvasMargin = [window.innerHeight / 4,  window.innerWidth / 4];
+
+    canvas.style.marginTop =  canvasMargin[0] + "px";
+    canvas.style.marginLeft = canvasMargin[1] + "px";
+
+    text.style.marginTop = canvasMargin[0] + canvas.height / 2.5 + "px";
+    score.style.marginTop = canvasMargin[0] + canvas.height / 2.5 + 50 + "px";
+
+    text.style.marginLeft = canvasMargin[1] + canvas.width / 3.3 + "px";
+    score.style.marginLeft = canvasMargin[1] + canvas.width / 3.3 + 30 + "px";
+
+    cs.fillStyle = "#000000";
+    cs.fillRect(0, 0, canvas.width, canvas.height);//make canvas black
+}
+
+window.addEventListener('load', changeCanvasSize);
+window.addEventListener('resize', changeCanvasSize)
+
 let snake = {//the snake object
     position : [//position of every part of body
         [1, 1],
@@ -22,12 +56,12 @@ let snake = {//the snake object
             apple.position = generateRandomPosition();
         }
 
-        let nextX = (x + vectorX == canvas.width / sqrSize - 1) ? 1 :
-        (x + vectorX == 0) ? canvas.width / sqrSize - 2 : 
+        let nextX = (x + vectorX == canvasWidthInSqrs - 1) ? 1 :
+        (x + vectorX == 0) ? canvasWidthInSqrs - 2 : 
         x + vectorX;
 
-        let nextY = (y + vectorY == canvas.height / sqrSize - 1) ? 1 : 
-        (y + vectorY == 0) ? (canvas.height / sqrSize) - 2: 
+        let nextY = (y + vectorY == canvasHeightInSqrs - 1) ? 1 : 
+        (y + vectorY == 0) ? canvasHeightInSqrs - 2: 
         y + vectorY
         if(!gameOver(this.position, nextX, nextY)){// if it`s not game over
             if(!appleWasAte){// if we ate an apple we don`t need to delete the tail and because that our snake become bigger
@@ -53,7 +87,7 @@ let snake = {//the snake object
 };
 
 
-snake.color = window.location.search.substring(6).split(",");
+if(window.location.search.substring(6) != "") snake.color = window.location.search.substring(6).split(",");
 
 
 let apple = {//the apple
@@ -69,13 +103,6 @@ let apple = {//the apple
 }
 
 let move = true;
-
-const sqrSize = 20;//set all squares size
-const height = canvas.height / sqrSize;// this is the size of canvas but in pixels(squares)
-const width = canvas.width / sqrSize;
-
-cs.fillStyle = "#000000";
-cs.fillRect(0, 0, canvas.width, canvas.height);//make canvas black
 
 let vectorX = 1, vectorY = 0;
 
@@ -136,7 +163,7 @@ function isAppleInSnake(snakePos, applePos){
 }
 
 function generateRandomPosition(){
-    return [Math.round( (Math.random() * (width - 3) ) + 1), Math.round( (Math.random() * (height - 3) ) + 1)];
+    return [Math.floor( (Math.random() * ( (canvas.width / sqrSize) - 3) ) + 1), Math.floor( (Math.random() * ( (canvas.height / sqrSize) - 3) ) + 1)];
 }
 
 let movement = {
