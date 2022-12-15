@@ -6,23 +6,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> 
-
-   <title>The snake</title>
-
-   <meta charset="utf-8">
+  <title>The snake</title>
+  <meta charset="utf-8">
  </head>
  <body style="background-color: rgb(51, 51, 51);">
-  <div>
-    <canvas id="map" width="1280" height="720" style="position: absolute; filter: grayscale(0%); margin-left: 13%; margin-top: 4%;"></canvas>
-    <p class="GameOver" id="text" style="margin-top: 410px;"></p>
-    <p class="ScoreText" id="score" style="opacity: 0;"></p>
+    <div id="gameOverBlock" class="game-over-container">
+      <div class="game-over-centred-container">
+        <p id="text" class="GameOver">GameOver</p>
+        <p id="score" class="ScoreText">Total score: </p>
+      </div>
+    </div>
+    <div style="width: 100%; text-align: center;">
+      <a href="https://timurius.github.io/js_snake/" target="_self">Back to lobby</a>
+      <a href="" target="_self" style="margin-left: 5px;">Restart</a>
+    </div>
+    <canvas id="map" width="1280" height="720" style="filter: grayscale(0%); margin: auto;"></canvas>
     <script src="visual.js"></script>
     <script src="script.js"></script>
-  </div>
-  <div style="margin-left: 30%; height: 56; width: 186;">
-    <a href="https://timurius.github.io/js_snake/" target="_self">Back to lobby</a>
-    <a href="" target="_self" style="margin-left: 17%;">Restart</a>
-  </div>
-  
  </body> 
 </html>

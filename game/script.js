@@ -21,11 +21,6 @@ function changeCanvasSize() {
     canvas.style.marginTop =  canvasMargin[0] + "px";
     canvas.style.marginLeft = canvasMargin[1] + "px";
 
-    text.style.marginTop = canvasMargin[0] + canvas.height / 2.5 + "px";
-    score.style.marginTop = canvasMargin[0] + canvas.height / 2.5 + 50 + "px";
-
-    text.style.marginLeft = canvasMargin[1] + canvas.width / 3.3 + "px";
-    score.style.marginLeft = canvasMargin[1] + canvas.width / 3.3 + 30 + "px";
 
     cs.fillStyle = "#000000";
     cs.fillRect(0, 0, canvas.width, canvas.height);//make canvas black
